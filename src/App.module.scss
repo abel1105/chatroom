@@ -1,3 +1,33 @@
-.App {
+@import "style/variable";
 
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+.App {
+  background: $background;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.NavBar {
+  background: $primary;
+  height: 70px;
+  width: 100vw;
+  padding: 17px 70px;
+  color: $primary_light;
+  font-size: 24px;
 }

@@ -25,11 +25,14 @@ const makeAdminToken = () => {
   );
 };
 
-const updateUser = (userId, userName) => {
+const updateUser = (image, userId, userName) => {
   return fetch(process.env.REACT_APP_API_ENDPOINT + '/users/' + userId, {
     method: 'PUT',
     body: JSON.stringify({
-      name: userName
+      name: userName,
+      custom_data: {
+        image
+      }
     }),
     headers: {
       Authorization: `Bearer ${makeAdminToken()}`
@@ -37,12 +40,15 @@ const updateUser = (userId, userName) => {
   });
 };
 
-const createUser = (userName, userId) => {
+const createUser = (image, userName, userId) => {
   return fetch(process.env.REACT_APP_API_ENDPOINT + '/users', {
     method: 'POST',
     body: JSON.stringify({
       id: userId,
-      name: userName
+      name: userName,
+      custom_data: {
+        image
+      }
     }),
     headers: {
       Authorization: `Bearer ${makeAdminToken()}`
@@ -53,7 +59,7 @@ const createUser = (userName, userId) => {
     })
     .then(json => {
       if (json.error === 'services/chatkit/user_already_exists') {
-        return updateUser(userId, userName);
+        return updateUser(image, userId, userName);
       }
       return json;
     });
@@ -90,12 +96,12 @@ const subscribe = currentUser => {
   });
 };
 
-export const connect = async (userName, userId = defaultUserId) => {
+export const connect = async (image, userName, userId = defaultUserId) => {
   window.localStorage.setItem('userId', userId);
 
   store.dispatch(setUserId(userId));
 
-  await createUser(userName, userId);
+  await createUser(image, userName, userId);
 
   const chatManager = new ChatManager({
     instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
@@ -105,7 +111,6 @@ export const connect = async (userName, userId = defaultUserId) => {
 
   return chatManager.connect().then(async currentUser => {
     user = currentUser;
-    console.log(currentUser.name, currentUser);
     if (currentUser.rooms && currentUser.rooms[0]) {
       await currentUser.joinRoom({
         roomId: process.env.REACT_APP_LOBBY_ROOM_ID

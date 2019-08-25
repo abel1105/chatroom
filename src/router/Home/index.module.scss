@@ -1,0 +1,125 @@
+@import "../../style/variable";
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  background: $primary;
+  margin-top: 117px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 20px;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: 30px;
+}
+
+.subtitle {
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 16px;
+}
+
+.avatar {
+  margin-top: 16px;
+
+  img {
+    z-index: 1;
+  }
+
+  .shadow {
+    content: "";
+    background: #4B4343;
+    width: 100%;
+    height: 30px;
+    margin-top: -15px;
+    z-index: 0;
+    border-radius: 70px / 15px;
+  }
+}
+
+.input {
+  width: 100%;
+  background: $background;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  margin-top: 15px;
+
+  &::placeholder {
+   color: $primary;
+  }
+}
+
+.submit {
+  background: #fff;
+  border: none;
+  padding: 10px 30px;
+  color: $primary;
+  font-weight: bold;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.button {
+  background: transparent;
+  border: solid 2px #fff;
+  border-radius: 9px;
+  padding: 10px 30px;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.active {
+    border-color: $active;
+    color: $active;
+  }
+}
+
+.card {
+  background: transparent;
+  border: solid 2px #fff;
+  border-radius: 9px;
+  width: 90px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+
+
+  &:first-child {
+    margin-top: 10px;
+  }
+
+  img {
+    height: calc(100% - 10px);
+  }
+
+  &.active {
+    border-color: $active;
+  }
+}
