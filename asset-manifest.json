@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e9d5b736.chunk.css",
+    "main.js": "/static/js/main.ee30182f.chunk.js",
+    "main.js.map": "/static/js/main.ee30182f.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.733c37f1.js",
+    "runtime~main.js.map": "/static/js/runtime~main.733c37f1.js.map",
+    "static/css/2.764ccc25.chunk.css": "/static/css/2.764ccc25.chunk.css",
+    "static/js/2.be3e1d7d.chunk.js": "/static/js/2.be3e1d7d.chunk.js",
+    "static/js/2.be3e1d7d.chunk.js.map": "/static/js/2.be3e1d7d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.e87121fbf7074f1c880e3e916375625a.js": "/precache-manifest.e87121fbf7074f1c880e3e916375625a.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.764ccc25.chunk.css.map": "/static/css/2.764ccc25.chunk.css.map",
+    "static/css/main.e9d5b736.chunk.css.map": "/static/css/main.e9d5b736.chunk.css.map",
+    "static/media/cat-1.png": "/static/media/cat-1.ceb705ab.png",
+    "static/media/cat-3.png": "/static/media/cat-3.855a9cdf.png",
+    "static/media/dog-1.png": "/static/media/dog-1.08aed622.png",
+    "static/media/dog-2.png": "/static/media/dog-2.1e1dd1b3.png",
+    "static/media/dog-3.png": "/static/media/dog-3.0c3fca98.png",
+    "static/media/dog-4.png": "/static/media/dog-4.2744609f.png"
+  }
+}
