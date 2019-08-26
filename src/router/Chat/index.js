@@ -27,6 +27,7 @@ function Chat() {
     <div className={s.root}>
       <div className={s.panel}>
         <img
+          alt="avatar"
           className={s.avatar}
           src={require(`../../images/small/${image}.png`)}
         />
@@ -69,6 +70,7 @@ function Chat() {
                       <Tooltip title={userName}>
                         <div className={s.user_avatar}>
                           <img
+                            alt="avatar"
                             src={require(`../../images/small/${userImage}.png`)}
                           />
                           <span>{userName}</span>
@@ -79,6 +81,7 @@ function Chat() {
                     </li>
                   );
                 }
+                return null;
               });
             } else if (data.type === PRESENCE_TYPE) {
               const { current, previous } = data.user.state;
@@ -95,6 +98,7 @@ function Chat() {
                 );
               }
             }
+            return null;
           })}
         </ul>
         <div className={s.sender}>

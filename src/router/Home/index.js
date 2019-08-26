@@ -63,7 +63,7 @@ function Home({ history }) {
           <h1 className={s.title}>WELCOME</h1>
           <h2 className={s.subtitle}>阿貓阿狗聊天室</h2>
           <div className={s.avatar}>
-            <img src={require(`../../images/${image}.png`)} />
+            <img alt="avatar" src={require(`../../images/${image}.png`)} />
             <div className={s.shadow} />
           </div>
           <input
@@ -87,25 +87,25 @@ function Home({ history }) {
             className={cx(s.card, { [s.active]: `${type}-1` === image })}
             onClick={() => setImage(`${type}-1`)}
           >
-            <img src={require(`../../images/${type}-1.png`)} />
+            <img alt="avatar" src={require(`../../images/${type}-1.png`)} />
           </div>
           <div
             className={cx(s.card, { [s.active]: `${type}-2` === image })}
             onClick={() => setImage(`${type}-2`)}
           >
-            <img src={require(`../../images/${type}-2.png`)} />
+            <img alt="avatar" src={require(`../../images/${type}-2.png`)} />
           </div>
           <div
             className={cx(s.card, { [s.active]: `${type}-3` === image })}
             onClick={() => setImage(`${type}-3`)}
           >
-            <img src={require(`../../images/${type}-3.png`)} />
+            <img alt="avatar" src={require(`../../images/${type}-3.png`)} />
           </div>
           <div
             className={cx(s.card, { [s.active]: `${type}-4` === image })}
             onClick={() => setImage(`${type}-4`)}
           >
-            <img src={require(`../../images/${type}-4.png`)} />
+            <img alt="avatar" src={require(`../../images/${type}-4.png`)} />
           </div>
         </div>
       </div>
