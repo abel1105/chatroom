@@ -2,17 +2,42 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 import { connect } from '../../plugins/chatkit';
 import { useDispatch } from 'redux-react-hook';
-import { login } from '../../store/actions';
+import { clearMessage, login } from '../../store/actions';
 import s from './index.module.scss';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+  progress: {
+    color: '#fff'
+  }
+}));
 
 function Home({ history }) {
-  const [name, setName] = useState('Abel');
-  const [image, setImage] = useState('dog-1');
-  const [type, setType] = useState('dog');
+  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState(
+    window.localStorage.getItem('userName') || ''
+  );
+  const [image, setImage] = useState(
+    window.localStorage.getItem('userImage') || 'dog-1'
+  );
+  const [type, setType] = useState(
+    window.localStorage.getItem('userImage')
+      ? window.localStorage.getItem('userImage').split('-')[0]
+      : 'dog'
+  );
   const dispatch = useDispatch();
 
+  const classes = useStyles();
+
   const onSubmit = async () => {
-    await connect(image, name);
+    if (name === '') return false;
+    setIsLoading(true);
+    dispatch(clearMessage());
+    await connect(
+      image,
+      name
+    );
     dispatch(login());
     history.push('/chat');
   };
@@ -47,9 +72,15 @@ function Home({ history }) {
             onChange={e => setName(e.target.value)}
             placeholder="輸入暱稱"
           />
-          <button className={s.submit} onClick={onSubmit}>
-            進入聊天
-          </button>
+          <div className={s.submit}>
+            {isLoading ? (
+              <CircularProgress className={classes.progress} />
+            ) : (
+              <button className={s.submit} onClick={onSubmit}>
+                進入聊天
+              </button>
+            )}
+          </div>
         </div>
         <div className={s.column}>
           <div

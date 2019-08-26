@@ -24,14 +24,12 @@
 }
 
 .title {
-  color: #fff;
   font-weight: 700;
   font-size: 40px;
   margin-top: 30px;
 }
 
 .subtitle {
-  color: #fff;
   font-weight: 700;
   font-size: 20px;
   margin-top: 16px;
@@ -70,14 +68,20 @@
 }
 
 .submit {
-  background: #fff;
-  border: none;
-  padding: 10px 30px;
-  color: $primary;
-  font-weight: bold;
-  border-radius: 20px;
-  margin-top: 15px;
-  margin-bottom: 40px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background: #fff;
+    border: none;
+    padding: 10px 30px;
+    color: $primary;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 40px;
+  }
 }
 
 .button {
@@ -100,7 +104,7 @@
 }
 
 .card {
-  background: transparent;
+  background: $background;
   border: solid 2px #fff;
   border-radius: 9px;
   width: 90px;

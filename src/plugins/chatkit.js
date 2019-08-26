@@ -1,6 +1,12 @@
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import * as jwt from 'jsonwebtoken';
-import { pushMessage, pushPresence, setUserId } from '../store/actions';
+import {
+  pushMessage,
+  pushPresence,
+  setUserId,
+  setUserImage,
+  setUserName
+} from '../store/actions';
 import store from '../store';
 
 let user;
@@ -84,9 +90,12 @@ const subscribe = currentUser => {
       onUserStoppedTyping: user => {
         console.log('onUserStoppedTyping', user);
       },
+      onUserJoinedRoom: user => {
+        console.log('onUserJoined', user);
+      },
       onPresenceChanged: (state, user) => {
         console.log('onPresenceChanged', state, user);
-        store.dispatch(pushPresence(user));
+        store.dispatch(pushPresence({ ...user, state }));
       },
       onMessage: message => {
         console.log('Received message:', message);
@@ -98,8 +107,12 @@ const subscribe = currentUser => {
 
 export const connect = async (image, userName, userId = defaultUserId) => {
   window.localStorage.setItem('userId', userId);
+  window.localStorage.setItem('userName', userName);
+  window.localStorage.setItem('userImage', image);
 
   store.dispatch(setUserId(userId));
+  store.dispatch(setUserImage(image));
+  store.dispatch(setUserName(userName));
 
   await createUser(image, userName, userId);
 
