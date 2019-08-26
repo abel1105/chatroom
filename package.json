@@ -1,5 +1,6 @@
 {
   "name": "chatroom",
+  "homepage": "https://abel1105.github.io/chatroom",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
