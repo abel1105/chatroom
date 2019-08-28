@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import s from './index.module.scss';
 import { useMappedState } from 'redux-react-hook';
@@ -7,6 +7,8 @@ import { sendMessage } from '../../plugins/chatkit';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Picker } from 'emoji-mart';
+import Popover from '@material-ui/core/Popover';
 
 function Chat() {
   const [text, setText] = useState('');
@@ -16,11 +18,33 @@ function Chat() {
   const name = useMappedState(state => state.name);
   const [info, setInfo] = useState(`大家好，我是${name}`);
   const [isInfoEditable, setIsInfoEditable] = useState(false);
+  const [emojiEl, setEmojiEl] = useState(null);
+
+  const list = useRef(null);
+
+  useEffect(() => {
+    list.current.scrollTop = list.current.scrollHeight;
+  }, [datas]);
 
   const sendText = () => {
     if (text === '') return false;
     sendMessage(text);
     setText('');
+  };
+
+  const onKeyDown = e => {
+    if (e.keyCode === 13) {
+      sendText();
+    }
+  };
+
+  const addEmoji = e => {
+    console.log(e);
+    setText(text + e.native);
+  };
+
+  const showEmoji = e => {
+    setEmojiEl(emojiEl ? null : e.currentTarget);
   };
 
   return (
@@ -50,7 +74,7 @@ function Chat() {
         <div className={s.circle}>大廳模式</div>
       </div>
       <div className={s.main}>
-        <ul className={s.list}>
+        <ul className={s.list} ref={list}>
           {datas.map(data => {
             if (data.type === MESSAGE_TYPE) {
               const { message } = data;
@@ -103,7 +127,22 @@ function Chat() {
         </ul>
         <div className={s.sender}>
           <div className={s.sender_icon}>
-            <Icon>insert_emoticon</Icon>
+            <Icon onClick={showEmoji}>insert_emoticon</Icon>
+            <Popover
+              open={Boolean(emojiEl)}
+              anchorEl={emojiEl}
+              onClose={showEmoji}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left'
+              }}
+              transformOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left'
+              }}
+            >
+              <Picker onSelect={addEmoji} />
+            </Popover>
             <Icon>image</Icon>
             <Icon>attach_file</Icon>
           </div>
@@ -111,6 +150,7 @@ function Chat() {
             className={s.sender_text}
             value={text}
             onChange={e => setText(e.target.value)}
+            onKeyDown={e => onKeyDown(e)}
           />
           <button className={s.sender_btn} onClick={sendText}>
             <Icon>send</Icon>
