@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import { connect } from '../../plugins/chatkit';
+import { connect } from '../../plugins/fake_chatroom';
 import { useDispatch } from 'redux-react-hook';
 import { clearMessage, login } from '../../store/actions';
 import s from './index.module.scss';
@@ -81,6 +81,7 @@ function Home({ history }) {
               </button>
             )}
           </div>
+          <div className={s.message}>Pusher chatkit had been deprecated, cannot online chat anymore</div>
         </div>
         <div className={s.column}>
           <div

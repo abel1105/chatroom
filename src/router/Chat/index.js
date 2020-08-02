@@ -3,7 +3,7 @@ import cx from 'classnames';
 import s from './index.module.scss';
 import { useMappedState } from 'redux-react-hook';
 import { MESSAGE_TYPE, PRESENCE_TYPE } from '../../store/actions';
-import { sendMessage } from '../../plugins/chatkit';
+import { sendMessage } from '../../plugins/fake_chatroom';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import Tooltip from '@material-ui/core/Tooltip';
